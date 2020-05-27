@@ -2,6 +2,6 @@
 
  
 
-![](./ROUTER-ON-A-STICK.PNG)
+![](./router.PNG)
 
 Mensagem: Topologia utilizando os protocolos ROUTER-ON-A-STICK
