@@ -1,0 +1,45 @@
+SW-01
+
+enable
+conf t
+hostname SW-01
+enable secret 3force20
+banner motd "ACESSO APENAS PARA PESSOAS AUTORIZADAS!"
+username linkdoti privilege 15 secret masterkey86
+ip domain-name hyrule.local
+crypto key generate rsa general-key modulus 1024
+line vty 0 15
+transport input ssh
+login local
+exit
+line console 0
+login local
+exit
+vlan 30 
+name USUARIOS
+vlan 40
+name SERVIDORES
+vlan 90
+name GERENCIAMENTO
+interface range f0/1-2
+switchport mode access
+switchport access vlan 30
+interface f0/20
+switchport mode access
+switchport access vlan 40
+interface f0/24
+switchport mode access
+switchport access vlan 90
+interface g0/1
+switchport mode trunk
+switchport trunk native vlan 99
+switchport trunk allowed vlan 30,40,90,99
+interface vlan 90
+ip address 172.16.1.254 255.255.255.0
+interface range f0/3-19
+shutdown
+interface range f0/21-23
+shutdown
+interface g0/2
+shutdown
+do wr 
